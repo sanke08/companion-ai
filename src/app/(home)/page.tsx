@@ -1,7 +1,6 @@
 import Categorie from '@/components/Categorie'
 import Image from 'next/image'
 import React, { Suspense } from 'react'
-import img from "../../../public/1.jpg"
 import Link from 'next/link'
 import Searchbar from '@/components/Searchbar'
 import { db } from '@/lib/db'
@@ -19,9 +18,9 @@ async function page({ searchParams }: Props) {
   const verification = await db.verification.findMany({
     where: {
       Companion: {
-        category: searchParams.category,
+        category: searchParams.category || undefined,
         name: {
-          contains: searchParams.name
+          contains: searchParams.name || undefined
         }
       }
     },
