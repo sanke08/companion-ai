@@ -2,7 +2,6 @@
 
 import GoogleProvider from "next-auth/providers/google"
 import {  AuthOptions, User } from "next-auth"
-import NextAuth from "next-auth/next"
 import { db } from "@/lib/db"
 import {  AdapterUser } from "next-auth/adapters"
 

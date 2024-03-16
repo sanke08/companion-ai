@@ -1,8 +1,6 @@
+
 import { authOption } from "@/lib/authoptions"
 import NextAuth from "next-auth/next"
-
-
-
 
 
 
