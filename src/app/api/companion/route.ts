@@ -12,7 +12,7 @@ export const POST = async (req: NextRequest) => {
         if (!user) return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
         const body = await req.json()
         const { name, description, category, avatar ,instruction} = createCompanionValidator.parse(body);
-        if (!category) return NextResponse.json({ message: "Ctegory should be provided" }), { status: 400 }
+        if (!category) return NextResponse.json({ message: "Ctegory should be provided" }, { status: 400 })
         const companion = await db.companion.create({
             data: {
                 name, description, category,
