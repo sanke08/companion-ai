@@ -77,6 +77,7 @@ export const getChat = async ({ messages, currentMess, companionId }: { messages
         const result = await chat.sendMessage(`${currentMess.parts}`);
 
         const response = await result.response;
+        // @ts-ignore
         const message = { role: "model", parts: response.candidates[0].content.parts[0].text }
         return message
     } catch (error) {
