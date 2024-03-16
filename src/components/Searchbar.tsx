@@ -12,11 +12,11 @@ const Searchbar = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             if (searchParams.has("category")) {
-                if (!name) return router.push(`/?category=${searchParams.get("category")}`)
-                router.push(`/?name=${name}&category=${searchParams.get("category")}`)
+                if (!name) return router.push(`/home?category=${searchParams.get("category")}`)
+                router.push(`/home?name=${name}&category=${searchParams.get("category")}`)
             } else {
-                if (!name) return router.push("/")
-                router.push(`/?name=${name}`)
+                if (!name) return router.push("/home")
+                router.push(`/home?name=${name}`)
             }
         }, 1000);
         return () => {

@@ -30,7 +30,7 @@ const routes = [
     {
         label: "Home",
         icon: Home,
-        href: "/"
+        href: "/home"
     },
     {
         label: "Create",

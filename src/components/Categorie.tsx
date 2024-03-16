@@ -20,10 +20,9 @@ const Categorie = ({ categories }: Props) => {
 
   const handleNavigation = (category: string) => {
     if (searchParams.has("name")) {
-
-      router.replace(`/?name=${searchParams.get("name")}&category=${category}`)
+      router.replace(`/home?name=${searchParams.get("name")}&category=${category}`)
     } else {
-      router.replace(`/?category=${category}`)
+      router.replace(`/home?category=${category}`)
     }
   }
 
@@ -31,7 +30,7 @@ const Categorie = ({ categories }: Props) => {
 
   return (
     <div className='flex overflow-scroll gap-3'>
-      <Button onClick={() => router.push("/")} className={twMerge(' py-2 px-4 bg-neutral-700/30 hover:bg-neutral-500/50 rounded-lg', !searchParams?.has("category") && "bg-neutral-500/50")}>
+      <Button onClick={() => router.push("/home")} className={twMerge(' py-2 px-4 bg-neutral-700/30 hover:bg-neutral-500/50 rounded-lg', !searchParams?.has("category") && "bg-neutral-500/50")}>
         New
       </Button>
       {

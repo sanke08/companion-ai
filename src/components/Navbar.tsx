@@ -20,7 +20,7 @@ const Navbar = ({ user }: Props) => {
                 user ?
                     <div className=' flex gap-2 items-center'>
                         <Avatar imgUrl={user.avatar} name={user.name} />
-                        <Button onClick={() => signOut({ redirect: false })} className=' border border-neutral-500'><LogOut className=' w-5 h-5'/>  </Button>
+                        <Button onClick={() => signOut({ redirect: true })} className=' border border-neutral-500'><LogOut className=' w-5 h-5'/>  </Button>
                     </div>
                     :
                     <Button onClick={() => signIn("google")} className=' border border-neutral-500'>Sign-in</Button>

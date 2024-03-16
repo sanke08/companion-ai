@@ -1,9 +1,9 @@
 
 
 import GoogleProvider from "next-auth/providers/google"
-import {  AuthOptions, User } from "next-auth"
+import { AuthOptions, User } from "next-auth"
 import { db } from "@/lib/db"
-import {  AdapterUser } from "next-auth/adapters"
+import { AdapterUser } from "next-auth/adapters"
 
 
 
@@ -38,11 +38,12 @@ export const authOption: AuthOptions = {
                 return false
             }
 
+        },
+        redirect() {
+            return "/"
         }
     },
-    pages: {
-        signIn: "/"
-    },
+
     session: {
         strategy: "jwt"
     },
