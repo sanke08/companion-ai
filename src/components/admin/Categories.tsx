@@ -4,7 +4,7 @@ import { Button } from '../ui/button'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
-const Categories = () => {
+const Categories = ({ isAdmin }: { isAdmin: boolean }) => {
     const searchParams = useSearchParams()
     const router = useRouter()
 
@@ -13,9 +13,12 @@ const Categories = () => {
             <Button onClick={() => router.replace("/admin/?category=companions")} className={twMerge(' py-2 px-4 bg-neutral-700/30 hover:bg-neutral-500/50 rounded-lg', searchParams?.get("category") === "companions" && "bg-neutral-500/50")}>
                 Companions
             </Button>
-            <Button onClick={() => router.replace("/admin/?category=users")} className={twMerge(' py-2 px-4 bg-neutral-700/30 hover:bg-neutral-500/50 rounded-lg', searchParams?.get("category") === "users" && " bg-neutral-500/50")}>
-                Users
-            </Button>
+            {
+                isAdmin &&
+                <Button onClick={() => router.replace("/admin/?category=users")} className={twMerge(' py-2 px-4 bg-neutral-700/30 hover:bg-neutral-500/50 rounded-lg', searchParams?.get("category") === "users" && " bg-neutral-500/50")}>
+                    Users
+                </Button>
+            }
         </div>
     )
 }

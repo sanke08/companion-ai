@@ -1,6 +1,7 @@
 import CompanionBars from '@/components/admin/CompanionBars'
 import UserBar from '@/components/admin/UserBar'
 import { db } from '@/lib/db'
+import { getServerSideUser } from '@/lib/getServerSideUser'
 import React from 'react'
 
 
@@ -14,6 +15,8 @@ interface Props {
 
 const page = async ({ searchParams }: Props) => {
 
+    const user = await getServerSideUser()
+    if (!user || user.role === "USER") return
 
     if (searchParams.category === "companions" || !searchParams.category) {
         const companions = await db.companion.findMany(({
@@ -39,12 +42,16 @@ const page = async ({ searchParams }: Props) => {
         )
     }
 
-    if (searchParams.category === "users") {
+    if (searchParams.category === "users" && user.role === "ADMIN") {
         const users = await db.user.findMany({
             where: {
-                // role: {
-                //     not: "ADMIN"
-                // }
+                OR: [
+                    {
+                        role: {
+                            not: "ADMIN"
+                        }
+                    }
+                ]
             }
         })
         return (

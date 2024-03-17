@@ -9,9 +9,9 @@ export async function middleware(req: NextRequest) {
     const pathname = req.nextUrl.pathname
 
     if (pathname === "/" && token)
-        return NextResponse.rewrite(new URL('/main', req.url))
+        return NextResponse.rewrite(new URL('/home', req.url))
 
-    const securePath = pathname === "/main" || pathname === "/settings" || pathname === "/admin" || pathname === "/create:path*"
+    const securePath = pathname === "/home" || pathname === "/settings" || pathname === "/admin" || pathname === "/create:path*"
 
     const secureApiPath = pathname === "/api:path*"
     if (secureApiPath && !token) return NextResponse.json({ message: "Unauthorized" }, { status: 401 })

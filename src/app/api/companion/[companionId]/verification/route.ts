@@ -7,7 +7,7 @@ export const PATCH = async (req: NextRequest, { params }: { params: { companionI
     try {
         const user = await getServerSideUser()
         if (!user) return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
-        if (user.role != "ADMIN") return NextResponse.json({ message: "you dont have to access this route" }, { status: 401 })
+        if (user.role==="USER") return NextResponse.json({ message: "you dont have to access this route" }, { status: 401 })
         const companion = await db.companion.findUnique({
             where: {
                 id: params.companionId

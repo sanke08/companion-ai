@@ -12,14 +12,14 @@ const layout = async ({ children }: Props) => {
 
 
     const user = await getServerSideUser()
-
+    if (!user) return
 
     return (
 
         <div className=' w-full'>
             <Navbar user={user} />
             <div className=' w-full flex pt-[65px] md:pl-[100px]'>
-                <Sidebar />
+                <Sidebar userRole={user?.role} />
                 {children}
             </div>
         </div>
