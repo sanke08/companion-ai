@@ -5,6 +5,7 @@ import React from 'react'
 const layout = async ({ children }: { children: React.ReactNode }) => {
 
     const user = await getServerSideUser()
+    if (!user || user.role === "USER") return
     const isAdmin = user?.role === "ADMIN"
     return (
         <div className=' w-full min-h-screen p-4'>

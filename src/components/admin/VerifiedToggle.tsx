@@ -25,10 +25,15 @@ const VerifiedToggle = ({ activeTitle, deactiveTitles, active, type, id }: Props
                 const { data } = await axios.patch(`/api/companion/${id}/verification`)
                 return data
             }
+            if (type === "user") {
+                const { data } = await axios.patch(`/api/UVerification`, { verifierId: id })
+                return data
+
+            }
         },
         onSuccess: (data) => {
-            router.refresh()
             setToggle((pre) => !pre)
+            router.refresh()
         },
         onError: () => { }
     })

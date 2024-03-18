@@ -40,7 +40,7 @@ async function page({ searchParams }: Props) {
   )
 
   return (
-    <div className=' w-full p-2 px-5'>
+    <div className=' w-full p-2 px-3'>
       <Searchbar />
         <Categorie categories={categories} />
         <div className=' grid grid-cols-2 py-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7 gap-4'>
@@ -51,7 +51,7 @@ async function page({ searchParams }: Props) {
                   <Image src={companion.avatar || ""} alt='' fill className=' hover:scale-[1.05] transition-all duration-500' />
                 </div>
                 <p className=' text-neutral-4 text-lg mx-auto'>{companion.name} </p>
-                <p className=' text-neutral-500 mx-auto'>{companion.description}  </p>
+                <p className=' text-neutral-500 text-xs mx-auto'>{companion.description}  </p>
               </Link>
             ))
           }

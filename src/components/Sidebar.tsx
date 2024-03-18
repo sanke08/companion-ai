@@ -58,6 +58,6 @@ const routes = [
     {
         label: "Admin",
         icon: ShieldCheck,
-        href: "/admin"
+        href: "/admin/companions"
     },
 ]

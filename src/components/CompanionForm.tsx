@@ -32,13 +32,11 @@ const CompanionForm = ({ categories, companion }: Props) => {
     const [name, setName] = useState(companion?.name || "")
     const [category, setCategory] = useState(companion?.category || "")
     const [desc, setDesc] = useState(companion?.description || "")
-    const [ImageUrl, setImageUrl] = useState(companion?.avatar||"")
+    const [ImageUrl, setImageUrl] = useState(companion?.avatar || "")
     const [instruction, setInstruction] = useState(companion?.instruction || "")
-console.log(ImageUrl)
     const handleCreateErrRef = useRef("")
 
     const [isDisabled, setIsDisabled] = useState(false)
-
 
 
 
@@ -51,7 +49,7 @@ console.log(ImageUrl)
                 avatar: ImageUrl,
                 instruction
             }
-            handleCreateErrRef.current =""
+            handleCreateErrRef.current = ""
             setIsDisabled(true)
             if (companion) {
                 const { data } = await axios.patch(`/api/companion/${companion.id}`, payload)

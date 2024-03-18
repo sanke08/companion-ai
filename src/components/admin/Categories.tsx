@@ -10,12 +10,12 @@ const Categories = ({ isAdmin }: { isAdmin: boolean }) => {
 
     return (
         <div className='flex overflow-scroll gap-3'>
-            <Button onClick={() => router.replace("/admin/?category=companions")} className={twMerge(' py-2 px-4 bg-neutral-700/30 hover:bg-neutral-500/50 rounded-lg', searchParams?.get("category") === "companions" && "bg-neutral-500/50")}>
+            <Button onClick={() => router.replace("/admin/companions")} className={twMerge(' py-2 px-4 bg-neutral-700/30 hover:bg-neutral-500/50 rounded-lg', searchParams?.get("category") === "companions" && "bg-neutral-500/50")}>
                 Companions
             </Button>
             {
                 isAdmin &&
-                <Button onClick={() => router.replace("/admin/?category=users")} className={twMerge(' py-2 px-4 bg-neutral-700/30 hover:bg-neutral-500/50 rounded-lg', searchParams?.get("category") === "users" && " bg-neutral-500/50")}>
+                <Button onClick={() => router.replace("/admin/users")} className={twMerge(' py-2 px-4 bg-neutral-700/30 hover:bg-neutral-500/50 rounded-lg', searchParams?.get("category") === "users" && " bg-neutral-500/50")}>
                     Users
                 </Button>
             }

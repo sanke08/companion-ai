@@ -14,7 +14,7 @@ const Avatar = ({ imgUrl, name }: Props) => {
         <CustomTooltip message={name} >
             {
                 imgUrl ?
-                    <div className=' relative w-12 h-12 rounded-full overflow-hidden'>
+                    <div className=' relative w-10 h-10 rounded-full overflow-hidden'>
                         <Image src={imgUrl} alt='' fill className=' absolute w-full h-full' />
                     </div>
                     :
