@@ -39,7 +39,7 @@ const Sidebar = ({ userRole }: { userRole: Role }) => {
 export default Sidebar
 
 
-const routes = [
+export const routes = [
     {
         label: "Home",
         icon: Home,

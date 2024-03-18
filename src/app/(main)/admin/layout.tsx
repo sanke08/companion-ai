@@ -9,7 +9,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
     const isAdmin = user?.role === "ADMIN"
     return (
         <div className=' w-full min-h-screen p-4'>
-            <Categories isAdmin={isAdmin}/>
+            <Categories isAdmin={isAdmin} />
             {children}
         </div>
     )

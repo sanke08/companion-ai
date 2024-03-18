@@ -8,17 +8,18 @@ const page = async () => {
             role: {
                 not: "ADMIN"
             }
-        },
-        orderBy:{
-            id:"asc"
         }
     })
+
+    if (!users) return
 
     return (
         <div className=' space-y-2 w-full md:px-20'>
             {
-                users.map((user) => (
-                    <UserBar key={user.id} user={user} />
+                users.map(user => (
+                    <div key={user.id}>
+                        <UserBar key={user.id} user={user} />
+                    </div>
                 ))
             }
         </div>

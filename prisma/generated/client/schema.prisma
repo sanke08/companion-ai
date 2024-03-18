@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+}
+
+model User {
+  id     String  @id @unique() @default(cuid())
+  name   String
+  email  String
+  avatar String?
+  role   Role    @default(USER)
+
+  Companion    Companion[]
+  Verification Verification[]
+}
+
+enum Role {
+  ADMIN
+  MODERATOR
+  USER
+}
+
+model Companion {
+  id     String @id @unique() @default(cuid())
+  name   String
+  avatar String
+
+  creatorId String
+  Creator   User   @relation(references: [id], fields: [creatorId])
+
+  description String
+  instruction String @db.VarChar(1000)
+
+  category String
+  Category Category @relation(references: [name], fields: [category], onUpdate: Cascade)
+
+  Verification Verification[]
+}
+
+model Verification {
+  id String @id @unique() @default(cuid())
+
+  companionId String
+  Companion   Companion @relation(references: [id], fields: [companionId], onDelete: Cascade)
+
+  userId String
+  User   User   @relation(references: [id], fields: [userId])
+}
+
+model Category {
+  name      String      @id @unique()
+  Companion Companion[]
+}
