@@ -18,7 +18,6 @@ const page = async ({ params }: Props) => {
 
   const user = await getServerSideUser()
   if (!user) return
-  // const redis = await redis()
 
   const cashedCompanion = (await redis.hgetall(`companion-${params.companionId}`)) as { avatar: string, name: string }
 
