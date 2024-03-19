@@ -8,6 +8,9 @@ const page = async () => {
             role: {
                 not: "ADMIN"
             }
+        },
+        orderBy:{
+            id:"asc"
         }
     })
 
