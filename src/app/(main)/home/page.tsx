@@ -20,7 +20,7 @@ async function page({ searchParams }: Props) {
       Companion: {
         category: searchParams.category || undefined,
         name: {
-          contains: searchParams.name || undefined
+          contains: searchParams.name || undefined, mode: "insensitive"
         }
       }
     },
@@ -41,22 +41,21 @@ async function page({ searchParams }: Props) {
 
   return (
     <div className=' w-full p-2 px-3'>
-      <Suspense></Suspense>
       <Searchbar />
-        <Categorie categories={categories} />
-        <div className=' grid grid-cols-2 py-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7 gap-4'>
-          {
-            companions && companions.map((companion) => (
-              <Link href={`/chat/${companion.id}`} key={companion.id} className=" w-full h-full rounded-xl bg-neutral-700/30 hover:bg-neutral-700/50 p-5 transition-all duration-300 flex flex-col">
-                <div className=' w-full relative aspect-square overflow-hidden object-cover rounded-lg'>
-                  <Image src={companion.avatar || ""} alt='' fill className=' hover:scale-[1.05] transition-all duration-500' />
-                </div>
-                <p className=' text-neutral-4 text-lg mx-auto'>{companion.name} </p>
-                <p className=' text-neutral-500 text-xs mx-auto'>{companion.description}  </p>
-              </Link>
-            ))
-          }
-        </div>
+      <Categorie categories={categories} />
+      <div className=' grid grid-cols-2 py-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7 gap-4'>
+        {
+          companions && companions.map((companion) => (
+            <Link href={`/chat/${companion.id}`} key={companion.id} className=" w-full h-full rounded-xl bg-neutral-700/30 hover:bg-neutral-700/50 p-5 transition-all duration-300 flex flex-col">
+              <div className=' w-full relative aspect-square overflow-hidden object-cover rounded-lg'>
+                <Image src={companion.avatar || ""} alt='' fill className=' hover:scale-[1.05] transition-all duration-500' />
+              </div>
+              <p className=' text-neutral-4 text-lg mx-auto'>{companion.name} </p>
+              <p className=' text-neutral-500 text-xs mx-auto'>{companion.description}  </p>
+            </Link>
+          ))
+        }
+      </div>
     </div>
   )
 }
