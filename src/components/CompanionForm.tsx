@@ -40,7 +40,7 @@ const CompanionForm = ({ categories, companion }: Props) => {
 
 
 
-    const { mutate: create, isPending: createLoading } = useMutation({
+    const { mutate: create, isPending: createLoading } =  useMutation({
         mutationFn: async () => {
             const payload: createCompanionRequest = {
                 name: name,

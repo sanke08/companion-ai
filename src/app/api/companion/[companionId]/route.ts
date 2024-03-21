@@ -11,7 +11,7 @@ export const PATCH = async (req: NextRequest, { params }: { params: { companionI
         const user = await getServerSideUser()
         if (!user) return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
         const body = await req.json()
-        const { name, description, category, avatar,instruction } = createCompanionValidator.parse(body)
+        const { name, description, category, avatar, instruction } = createCompanionValidator.parse(body)
         const existCompanion = await db.companion.findUnique({
             where: {
                 id: params.companionId
@@ -23,12 +23,12 @@ export const PATCH = async (req: NextRequest, { params }: { params: { companionI
                 id: params.companionId
             },
             data: {
-                name, description, category, avatar,instruction
+                name, description, category, avatar, instruction
             }
         })
-        return NextResponse.json({ message: "success",redirectId: existCompanion.id },{status:200})
+        return NextResponse.json({ message: "success", redirectId: existCompanion.id }, { status: 200 })
     } catch (error) {
-
+console.log(error)
         if (error instanceof z.ZodError) {
             return NextResponse.json({ message: error.errors[0].message }, { status: 400 })
         }

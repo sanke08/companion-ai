@@ -40,7 +40,7 @@ model Companion {
   Creator   User   @relation(references: [id], fields: [creatorId])
 
   description String
-  instruction String @db.VarChar(1000)
+  instruction String @db.VarChar(2000)
 
   category String
   Category Category @relation(references: [name], fields: [category], onUpdate: Cascade)

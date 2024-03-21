@@ -169,7 +169,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../..",
@@ -179,7 +179,6 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -188,8 +187,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client\"\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id     String  @id @unique() @default(cuid())\n  name   String\n  email  String\n  avatar String?\n  role   Role    @default(USER)\n\n  Companion    Companion[]\n  Verification Verification[]\n}\n\nenum Role {\n  ADMIN\n  MODERATOR\n  USER\n}\n\nmodel Companion {\n  id     String @id @unique() @default(cuid())\n  name   String\n  avatar String\n\n  creatorId String\n  Creator   User   @relation(references: [id], fields: [creatorId])\n\n  description String\n  instruction String @db.VarChar(1000)\n\n  category String\n  Category Category @relation(references: [name], fields: [category], onUpdate: Cascade)\n\n  Verification Verification[]\n}\n\nmodel Verification {\n  id String @id @unique() @default(cuid())\n\n  companionId String\n  Companion   Companion @relation(references: [id], fields: [companionId], onDelete: Cascade)\n\n  userId String\n  User   User   @relation(references: [id], fields: [userId])\n}\n\nmodel Category {\n  name      String      @id @unique()\n  Companion Companion[]\n}\n",
-  "inlineSchemaHash": "399693ffde6d6171e0862177436a85428be0aa9f30682b2410a5a88a30f29dfa",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client\"\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id     String  @id @unique() @default(cuid())\n  name   String\n  email  String\n  avatar String?\n  role   Role    @default(USER)\n\n  Companion    Companion[]\n  Verification Verification[]\n}\n\nenum Role {\n  ADMIN\n  MODERATOR\n  USER\n}\n\nmodel Companion {\n  id     String @id @unique() @default(cuid())\n  name   String\n  avatar String\n\n  creatorId String\n  Creator   User   @relation(references: [id], fields: [creatorId])\n\n  description String\n  instruction String @db.VarChar(2000)\n\n  category String\n  Category Category @relation(references: [name], fields: [category], onUpdate: Cascade)\n\n  Verification Verification[]\n}\n\nmodel Verification {\n  id String @id @unique() @default(cuid())\n\n  companionId String\n  Companion   Companion @relation(references: [id], fields: [companionId], onDelete: Cascade)\n\n  userId String\n  User   User   @relation(references: [id], fields: [userId])\n}\n\nmodel Category {\n  name      String      @id @unique()\n  Companion Companion[]\n}\n",
+  "inlineSchemaHash": "6e7a61f876162ea99494c6ed6fa1b1b66d06bfbbd71f98333dd9498c31410ff6",
   "copyEngine": true
 }
 config.dirname = '/'
