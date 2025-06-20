@@ -11,7 +11,12 @@ export const authOption: AuthOptions = {
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID as string,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+            authorization: {
+                params: {
+                    prompt: "select_account"
+                }
+            }
         }),
     ],
     callbacks: {
@@ -24,6 +29,7 @@ export const authOption: AuthOptions = {
                         email: user.email ? user.email : ""
                     }
                 })
+
                 if (!existUser) {
                     await db.user.create({
                         data: {

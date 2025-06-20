@@ -17,7 +17,7 @@ const Header = ({ companionAvatar, companionName }: Props) => {
     const router = useRouter()
     return (
         <div className='w-full h-16 bg-neutral-800 flex justify-between items-center px-5'>
-            <div className=' flex gap-5 items-center w-full'>
+            <div className=' flex gap-5 items-center w-full max-w-5xl mx-auto'>
                 <Button onClick={() => router.back()} className=' bg-neutral-700 p-0 rounded-full'>
                     <CustomTooltip message='Back'>
                         <ChevronLeft className=' h-10 w-10 p-1 rounded-full' />

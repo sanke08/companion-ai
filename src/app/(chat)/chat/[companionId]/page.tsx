@@ -19,33 +19,37 @@ const page = async ({ params }: Props) => {
   const user = await getServerSideUser()
   if (!user) return
 
-  const cashedCompanion = (await redis.hgetall(`companion-${params.companionId}`)) as { avatar: string, name: string }
+  // const cashedCompanion = (await redis.hgetall(`companion-${params.companionId}`)) as { avatar: string, name: string }
 
   let companion: { name: string, avatar: string } | null = null
-
-  if (!cashedCompanion) {
-    companion = await db.companion.findUnique({
-      where: {
-        id: params.companionId
-      },
-      select: {
-        name: true,
-        avatar: true
-      }
-    })
-    if (companion) {
-      await redis.hset(`companion-${params.companionId}`, companion)
+  companion = await db.companion.findUnique({
+    where: {
+      id: params.companionId
+    },
+    select: {
+      name: true,
+      avatar: true
     }
-  }
+  })
+
+  // if (!cashedCompanion) {
+  //   if (companion) {
+  //     await redis.hset(`companion-${params.companionId}`, companion)
+  //   }
+  // }
 
 
-  if (!companion && !cashedCompanion) return
+  // if (!companion && !cashedCompanion) return
+  if (!companion) return
 
   return (
-    <div className=' w-full flex flex-col h-screen'>
-      <Header companionName={companion?.name ?? cashedCompanion?.name} companionAvatar={companion?.avatar ?? cashedCompanion.avatar} />
+    <div className=' w-full flex flex-col h-screen '>
+      {/* <Header companionName={companion?.name ?? cashedCompanion?.name} companionAvatar={companion?.avatar ?? cashedCompanion.avatar} />
       <MessageContaier userAvatar={user?.avatar} companionAvatar={companion?.avatar ?? cashedCompanion.avatar} userName={user.name} compqnionName={companion?.name ?? cashedCompanion.name} />
-      <Chatinput companionId={params.companionId} companionName={companion?.name ?? cashedCompanion.name} />
+      <Chatinput companionId={params.companionId} companionName={companion?.name ?? cashedCompanion.name} /> */}
+      <Header companionName={companion?.name} companionAvatar={companion?.avatar} />
+      <MessageContaier userAvatar={user?.avatar} companionAvatar={companion?.avatar} userName={user.name} compqnionName={companion?.name} />
+      <Chatinput companionId={params.companionId} companionName={companion?.name} />
     </div>
   )
 }

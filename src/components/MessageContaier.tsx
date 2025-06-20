@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { twMerge } from 'tailwind-merge';
 import Avatar from './Avatar';
 import { useChatScroll } from '@/hook/useScroll';
+import { cn } from '@/lib/utils';
 
 
 interface Props {
@@ -28,6 +29,7 @@ const MessageContaier = ({ companionAvatar, userAvatar, userName, compqnionName 
 
 
 
+
     useEffect(() => {
         dispatch(clearMessages())
         setTimeout(() => {
@@ -39,7 +41,7 @@ const MessageContaier = ({ companionAvatar, userAvatar, userName, compqnionName 
 
 
     return (
-        <div ref={ref} className='flex-1 h-full overflow-y-auto'>
+        <div ref={ref} className='flex-1 h-full overflow-y-auto w-full max-w-5xl mx-auto'>
             {
                 !fkLoading &&
                 <div className={twMerge(' flex gap-1 p-2')}>
@@ -59,14 +61,12 @@ const MessageContaier = ({ companionAvatar, userAvatar, userName, compqnionName 
                                 :
                                 <Avatar imgUrl={companionAvatar} name={compqnionName} />
                         }
-                        <div className=' min-w-60 max-w-[50%] px-5 py-2 h-max rounded-xl bg-neutral-500/20'>
-                            {message?.parts.length ?
-                                message.parts.split('\n').map((paragraph, index) => (
-                                    <p key={index}>{paragraph.replace(/\*/g, '').replace(/\*\s+/g, ',\n* ')}</p>
-                                ))
-                            :
-                            <p className=' text-rose-400 text-sm'>something went wrong please try again</p>}
-                        </div>
+
+                        <p key={i} dangerouslySetInnerHTML={{ __html: message.parts }} className={cn(
+                            "min-w-60 max-w-[50%] px-5 py-2 h-max rounded-xl bg-neutral-500/20",
+                            // message.role === "user" && "self-end"
+                        )} />
+
                     </div>
                 ))
             }
@@ -83,3 +83,15 @@ const MessageContaier = ({ companionAvatar, userAvatar, userName, compqnionName 
 }
 
 export default MessageContaier
+
+
+
+//   <div className=' min-w-60 max-w-[50%] px-5 py-2 h-max rounded-xl bg-neutral-500/20'>
+//                     {message?.parts.length ?
+//                         message.parts.split('\n').map((paragraph, index) => (
+//                             <p key={index}>{paragraph.replace(/\*/g, '').replace(/\*\s+/g, ',\n* ')}</p>
+//                         ))
+//                         :
+//                         <p className=' text-rose-400 text-sm'>something went wrong please try again</p>
+//                     }
+//                 </div>

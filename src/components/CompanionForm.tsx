@@ -40,7 +40,7 @@ const CompanionForm = ({ categories, companion }: Props) => {
 
 
 
-    const { mutate: create, isPending: createLoading } =  useMutation({
+    const { mutate: create, isPending: createLoading } = useMutation({
         mutationFn: async () => {
             const payload: createCompanionRequest = {
                 name: name,
@@ -65,7 +65,6 @@ const CompanionForm = ({ categories, companion }: Props) => {
         },
         onError: ({ response }: { response: { data: { message: string } } }) => {
             setIsDisabled(false)
-            console.log(response)
             handleCreateErrRef.current = response.data.message
         }
 

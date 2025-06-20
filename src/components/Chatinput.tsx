@@ -1,5 +1,5 @@
 "use client"
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 import { Send } from 'lucide-react'
@@ -16,7 +16,7 @@ import { useEventListener } from "usehooks-ts"
 const Chatinput = ({ companionId, companionName }: { companionId: string, companionName: string }) => {
 
   const { messages } = useSelector(selectChatState);
-  const [disabled,setDisabled]=useState(false)
+  const [disabled, setDisabled] = useState(false)
   const [inp, setInp] = useState("")
   const dispatch = useDispatch();
 
@@ -46,8 +46,8 @@ const Chatinput = ({ companionId, companionName }: { companionId: string, compan
 
 
   return (
-    <div className=' p-2 flex space-x-2 items-center'>
-      <Input value={inp}  spellCheck="true" disabled={disabled} placeholder={`# chat with ${companionName}`} onChange={(e) => setInp(e.target.value)} className=' py-6 bg-white text-black text-lg'/>
+    <div className=' p-2 flex space-x-2 items-center w-full max-w-5xl mx-auto'>
+      <Input value={inp} spellCheck="true" disabled={disabled} placeholder={`# chat with ${companionName}`} onChange={(e) => setInp(e.target.value)} className=' py-6 bg-white text-black text-lg' />
       <Button onClick={handlemessage} isDisabled={disabled} className=' bg-neutral-700/50'><Send /> </Button>
     </div>
   )

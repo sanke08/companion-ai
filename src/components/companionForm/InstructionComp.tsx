@@ -23,8 +23,7 @@ const InstructionComp = ({ instruction, onChangeInstrution, isDisabled, name }: 
     const handleGenerate = async () => {
         setLoading(true)
         const res = await generatePrompt(name)
-        console.log(res)
-        if(res){
+        if (res) {
             onChangeInstrution(res)
         }
         setLoading(false)
